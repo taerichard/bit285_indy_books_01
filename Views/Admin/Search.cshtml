@@ -9,7 +9,15 @@
     <div>
         Title to Find: <input asp-for="Title" />
     </div>
-    <!-- TODO: Add fields needed for seraching -->
+    <div>
+        Author to Find: <input asp-for="Author" />
+    </div>
+    
+    <div>
+        Min Value: <input asp-for="MinPrice" type="number"  min="0" />
+        Max Value: <input asp-for="MaxPrice" type="number" max="100" />
+    </div>
+
     <div>
         <input type="submit" value="Search"/>
     </div>

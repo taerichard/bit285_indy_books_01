@@ -16,7 +16,7 @@ namespace IndyBooks.Controllers
         public IActionResult Search()
         {
             return View();
-        }
+        }   
 
         [HttpPost]
         public ActionResult Search(SearchViewModel search)
@@ -30,17 +30,32 @@ namespace IndyBooks.Controllers
                 //(Note: searchBook is the info from the form)
                 // TODO: order the results by Title
                 foundBooks = foundBooks
-                             .Where(b => b.Title.Contains(search.Title));
+                             .Where(b => b.Title.Contains(search.Title))
+                             .OrderBy(b => b.Title);
             }
-
             //TODO: Add logic to filter the collection by last part of the Author's Name, if given
             // (HINT: consider the EndsWith() method, also you will need to adjust the View and ViewModel)
+            if (search.Author != null)
+            {
+                foundBooks = foundBooks.Where(b => b.Author.EndsWith(search.Author));
+            }
 
             //TODO: Filter the collection by price between a low and high value, if given
             //       order results by descending price 
             // (Note: you will need to adjust the ViewModel and View to add search fields)
 
+            if(search.MinPrice != -1)
+            {
+                foundBooks = foundBooks.Where(b => b.Price >= search.MinPrice && b.Price <= search.MaxPrice);
+            }
+
             return View("SearchResults", foundBooks);
         }
+
+        public IActionResult Create(SearchViewModel search)
+        {
+
+        }
+
     }
 }
