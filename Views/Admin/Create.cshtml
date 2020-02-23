@@ -1,0 +1,51 @@
+﻿@model IndyBooks.Models.Book
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_Layout";
+    ViewBag.Title = "Search";
+}
+
+<h1>Create</h1>
+
+<form asp-action="Create" asp-controller="Admin">
+    <div>
+        <label asp-for="Title">
+            Title
+            <input asp-for="Title" type="text" />
+        </label>
+    </div>
+
+    <div>
+        <label asp-for="Author">
+            Author
+            <input asp-for="Author" type="text" />
+        </label>
+    </div>
+
+    <div>
+        <label asp-for="Edition">
+            Edition
+            <input asp-for="Edition" type="text" />
+        </label>
+    </div>
+
+    <div>
+        <label asp-for="Price">
+            Price
+            <input asp-for="Price" type="number" />
+        </label>
+    </div>
+
+    <div>
+        <label asp-for="Year">
+            Year
+            <input asp-for="Year" type="text" />
+        </label>
+    </div>
+
+    <div>
+        <input type="submit" value="Search" />
+    </div>
+
+</form>
