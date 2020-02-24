@@ -39,7 +39,6 @@ namespace IndyBooks.Controllers
             {
                 foundBooks = foundBooks
                     .Where(book => book.Author.EndsWith(search.Author));
-
             }
 
             //TODO: Filter the collection by price between a low and high value, if given
@@ -58,15 +57,34 @@ namespace IndyBooks.Controllers
 
       
         [HttpGet]
-        public IActionResult Create(Book book)
-        {
-            return View(book);
-        }
-
-        [HttpPost]
         public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Book book)
+        {
+            CreateViewModel createViewModel = new CreateViewModel
+            {
+                Id = book.Id,
+                Title = book.Title,
+                Author = book.Author,
+                Edition = book.Edition,
+                Price = book.Price,
+                Year = book.Year
+            };
+
+            _db.Books.Add(book);
+            _db.SaveChanges();
+            return RedirectToAction("Success", createViewModel);
+        }
+
+        [HttpGet]
+        public IActionResult Success(CreateViewModel createViewModel)
+        {
+
+            return View(createViewModel);
         }
 
     }

@@ -1,0 +1,22 @@
+﻿@model IndyBooks.ViewModels.CreateViewModel
+@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+
+@{
+    ViewData["Title"] = "Success";
+}
+
+<h1>Success</h1>
+
+<div>
+    <h2>Book Created</h2>
+
+    <div>
+        <input asp-for="Title" />
+        <input asp-for="Author"/>
+        <input asp-for="Edition"/>
+        <input asp-for="Price"/>
+        <input asp-for="Year"/>
+
+    </div>
+</div>
+
